@@ -1,83 +1,193 @@
 # ConnectaTel Telecom Analysis
 
-## Overview
-This project analyzes customer behavior at ConnectaTel, a telecommunications company operating in Latin America. The objective is to understand usage patterns in calls and text messages, identify data quality issues, detect outliers, and segment customers by age and usage level to generate business recommendations.
+## Project Overview
+This project analyzes customer behavior at **ConnectaTel**, a telecommunications company operating in Latin America. The objective is to understand how customers use call and text services, identify data quality issues, detect unusual usage patterns, and segment users by age and intensity of usage in order to generate actionable business recommendations.
 
-## Business Goal
-The analysis helps ConnectaTel:
-- identify customer usage patterns
-- detect high-value and low-value customer segments
-- improve retention and upselling opportunities
-- design better telecom plans based on real usage behavior
+The notebook covers the full analytical workflow, from raw data exploration and data cleaning to user-level aggregation, descriptive analysis, outlier detection, segmentation, and executive interpretation for decision-making.
 
-## Datasets
+## Business Context
+ConnectaTel needs a better understanding of how its customer base actually behaves in order to improve plan design, identify valuable customer groups, and detect business opportunities related to retention and upselling.
+
+From a business perspective, this analysis is useful to:
+- understand usage behavior in calls and text messages
+- detect inconsistent or low-quality data before making decisions
+- identify low-, medium-, and high-usage customers
+- evaluate which segments may be more valuable for the business
+- support the design of better telecom plans based on real customer behavior
+
+## Datasets Used
 This project uses three datasets:
 
-- **plans.csv**  
-  Includes telecom plan information such as monthly price, included messages, included minutes, monthly GB, and extra charges.
+### 1. `plans.csv`
+Contains the commercial structure of the telecom plans currently offered by the company, including:
+- plan name
+- included messages
+- included minutes
+- monthly GB
+- monthly fee
+- extra charges for additional usage
 
-- **users_latam.csv**  
-  Includes customer information such as user ID, age, city, registration date, plan, and churn date.
+### 2. `users_latam.csv`
+Contains customer-level information, including:
+- user ID
+- first name
+- last name
+- age
+- city
+- registration date
+- assigned plan
+- churn date
 
-- **usage.csv**  
-  Includes detailed service usage logs such as event type (`call` or `text`), usage date, call duration, and message length.
+### 3. `usage.csv`
+Contains service-level usage logs for each customer, including:
+- event ID
+- user ID
+- type of event (`call` or `text`)
+- usage date
+- call duration
+- message length
 
-## Analysis Workflow
-The notebook follows these stages:
+## Project Objectives
+The main objectives of this analysis are:
 
-1. Data loading and exploration  
-2. Data quality review  
-3. Data cleaning  
-4. User-level aggregation  
-5. Descriptive analysis and visualizations  
-6. Outlier detection  
-7. Customer segmentation  
-8. Executive business insights  
+- evaluate the quality of the source data before analysis
+- identify missing values, invalid values, and sentinel values
+- standardize dates and detect out-of-range records
+- aggregate service usage at the customer level
+- analyze customer behavior using descriptive statistics and visualizations
+- detect outliers and interpret whether they represent data errors or real business behavior
+- segment customers by usage intensity and age group
+- translate the findings into business recommendations for stakeholders
+
+## Analytical Workflow
+The notebook follows a structured analytical process:
+
+### 1. Data Loading and Initial Exploration
+The three datasets are imported and reviewed to understand:
+- structure
+- dimensions
+- column names
+- data types
+- initial content preview
+
+### 2. Data Quality Review
+A full data quality assessment is performed to identify:
+- missing values
+- null proportions
+- possible logical absences
+- invalid entries
+- sentinel values
+- inconsistent labels
+- date problems
+
+### 3. Data Cleaning
+The cleaning stage includes:
+- replacing sentinel values such as `-999` in `age`
+- converting invalid values such as `?` in `city` into nulls
+- converting date columns into datetime format
+- detecting dates outside the expected range
+- preserving logical nulls in `duration` and `length` when they depend on event type
+
+### 4. User-Level Aggregation
+The usage dataset is aggregated by `user_id` to generate customer-level metrics:
+- `cant_mensajes`
+- `cant_llamadas`
+- `cant_minutos_llamada`
+
+This aggregated dataset is then merged with the customer table to create a more complete user profile.
+
+### 5. Descriptive Analysis
+The project includes descriptive analysis for:
+- customer age
+- number of messages
+- number of calls
+- total call minutes
+- plan distribution
+
+This allows a better understanding of central tendency, spread, and general customer behavior.
+
+### 6. Data Visualization
+Histograms and boxplots are used to:
+- evaluate the distribution of the main variables
+- compare behavior by plan type
+- identify whether variables are symmetric or right-skewed
+- visually detect outliers
+
+### 7. Outlier Detection
+Outliers are analyzed using:
+- boxplots
+- IQR-based limits
+
+The goal is not only to detect extreme values, but also to decide whether they represent:
+- data capture issues
+- or valid high-intensity customer behavior
+
+### 8. Customer Segmentation
+Customers are segmented into usage groups:
+- `Bajo uso`
+- `Uso medio`
+- `Alto uso`
+
+They are also segmented by age group:
+- `Joven`
+- `Adulto`
+- `Adulto Mayor`
+
+This helps connect customer behavior with commercial interpretation.
+
+### 9. Executive Insights
+The final stage translates the technical analysis into business conclusions focused on:
+- data quality implications
+- customer usage behavior
+- valuable segments
+- extreme usage patterns
+- strategic recommendations for telecom plan design
 
 ## Key Tasks Performed
-- handled missing values and invalid entries
-- replaced sentinel values such as `-999` in `age`
-- converted invalid categories such as `?` in `city` into missing values
-- corrected impossible dates
-- aggregated usage behavior by user
-- created customer segments by usage and age
-- analyzed distributions and outliers with histograms and boxplots
-- translated findings into business recommendations
+This project includes the following concrete tasks:
 
-## How to Run
-You can run this notebook in:
+- imported and explored multiple structured datasets
+- reviewed missing values and null proportions
+- identified sentinel values and invalid categories
+- standardized date columns and validated years
+- corrected invalid entries in key customer variables
+- validated logical missingness in telecom usage variables
+- aggregated event-level records into customer-level behavioral metrics
+- created histograms and boxplots for key numeric variables
+- calculated IQR thresholds for outlier detection
+- segmented users by usage intensity
+- segmented users by demographic age groups
+- wrote an executive analysis for stakeholders
 
-### Google Colab
-1. Open Google Colab
-2. Upload the `.ipynb` notebook
-3. Upload the datasets
-4. Run all cells from top to bottom
+## Key Findings
+Some of the most relevant findings from the analysis include:
 
-### Jupyter Notebook
-1. Open Jupyter Notebook locally
-2. Make sure the datasets are accessible
-3. Run all cells in order
+- the source data contained relevant quality issues such as null values, sentinel values, and dates outside the expected range
+- `churn_date` had a very high proportion of missing values, but these were interpreted as a logical absence of cancellation rather than an error
+- missing values in `duration` and `length` depended on event type and therefore were preserved as structural nulls
+- customer behavior was heterogeneous, with most users concentrated in low- or medium-usage patterns and a smaller group showing much higher service consumption
+- the strongest outliers were found in total call minutes, suggesting the existence of more intensive users
+- high-usage users appear to be the most commercially relevant group for retention and upselling strategies
 
-## Requirements
-This project uses:
-- pandas
-- numpy
-- matplotlib
-- seaborn
+## Business Recommendations
+Based on the analysis, ConnectaTel could consider the following actions:
 
-## Reproducibility Notes
-To reproduce the analysis correctly:
-- keep the expected dataset names
-- run the notebook from top to bottom
-- do not skip cleaning steps
-- rebuild `user_profile` after cleaning if needed
+- design **upselling campaigns** for customers with high usage who are still on lower-value plans
+- maintain **simple and affordable plans** for low-usage customers to improve retention
+- create more differentiated offers for high-intensity users
+- use age-based segmentation to improve targeting and messaging
+- strengthen data quality controls before future analysis and reporting
+- monitor extreme usage customers separately, since they may represent strategic revenue opportunities
 
-## Main Outputs
-- cleaned and structured telecom customer data
-- user-level usage metrics
-- distribution and outlier analysis
-- customer segmentation by age and usage
-- executive recommendations for ConnectaTel
+## Repository Structure
+A recommended repository structure for this project is:
 
-## Author
-Miguel Torres
+```text
+connectatel-telecom-analysis/
+│
+├── README.md
+├── connectatel-telecom-analysis.ipynb
+└── datasets/
+    ├── plans.csv
+    ├── users_latam.csv
+    └── usage.csv
