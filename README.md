@@ -179,6 +179,12 @@ Based on the analysis, ConnectaTel could consider the following actions:
 - strengthen data quality controls before future analysis and reporting
 - monitor extreme usage customers separately, since they may represent strategic revenue opportunities
 
+## Personal Voice & Learning
+
+- I learned that an **outlier should not automatically be treated as an error**.
+- **High-usage customers** may represent valuable business opportunities rather than invalid observations.
+- This analysis helped me connect technical data validation with business decisions in **customer segmentation, retention, and upselling**.
+
 ## Repository Structure
 A recommended repository structure for this project is:
 
