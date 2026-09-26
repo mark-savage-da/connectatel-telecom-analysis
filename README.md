@@ -113,6 +113,7 @@ Histograms and boxplots are used to:
 - identify whether variables are symmetric or right-skewed
 - visually detect outliers
 
+![Customer age distribution by plan](images/2_connectatel-age-distribution-by-plan.png)
 ### 7. Outlier Detection
 Outliers are analyzed using:
 - boxplots
@@ -122,12 +123,14 @@ The goal is not only to detect extreme values, but also to decide whether they r
 - data capture issues
 - or valid high-intensity customer behavior
 
+![Outlier visualization for total call minutes](images/3_connectatel-call-minutes-outliers.png)
 ### 8. Customer Segmentation
 Customers are segmented into usage groups:
 - `Bajo uso`
 - `Uso medio`
 - `Alto uso`
 
+![Customer segments by usage intensity](images/1_connectatel-usage-segments.png)
 They are also segmented by age group:
 - `Joven`
 - `Adulto`
