@@ -203,14 +203,14 @@ The main analysis and supporting visualizations are organized as follows:
 
 ```text
 connectatel-telecom-analysis/
-├── images/
-│   ├── 1_connectatel-usage-segments.png
-│   ├── 2_connectatel-age-distribution-by-plan.png
-│   └── 3_connectatel-call-minutes-outliers.png
 ├── datasets/
 │   ├── plans.csv
 │   ├── users_latam.csv
 │   └── usage.csv
+├── images/
+│   ├── 1_connectatel-usage-segments.png
+│   ├── 2_connectatel-age-distribution-by-plan.png
+│   └── 3_connectatel-call-minutes-outliers.png
 ├── connectatel-telecom-analysis.ipynb
 └── README.md
 ```
@@ -219,5 +219,5 @@ connectatel-telecom-analysis/
 
 - `connectatel-telecom-analysis.ipynb`: Main notebook covering data exploration, cleaning, usage analysis, segmentation, and interpretation.
 - `README.md`: Project overview, analytical workflow, key findings, and business recommendations.
+- `datasets/`: Source datasets used in the analysis: plans.csv, users_latam.csv, and usage.csv.
 - `images/`: Selected visualizations displayed in this README.
-- `datasets/`: Source datasets used in the analysis, including customer, plan, and usage information.
