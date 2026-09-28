@@ -113,6 +113,10 @@ Histograms and boxplots are used to:
 - identify whether variables are symmetric or right-skewed
 - visually detect outliers
 
+<p align="center">
+  <img src="images/2_connectatel-age-distribution-by-plan.png" alt="Customer age distribution by plan" width="760">
+</p>
+
 ### 7. Outlier Detection
 Outliers are analyzed using:
 - boxplots
@@ -122,11 +126,19 @@ The goal is not only to detect extreme values, but also to decide whether they r
 - data capture issues
 - or valid high-intensity customer behavior
 
+<p align="center">
+  <img src="images/3_connectatel-call-minutes-outliers.png" alt="Outlier visualization for total call minutes" width="760">
+</p>
+
 ### 8. Customer Segmentation
 Customers are segmented into usage groups:
 - `Bajo uso`
 - `Uso medio`
 - `Alto uso`
+
+<p align="center">
+  <img src="images/1_connectatel-usage-segments.png" alt="Customer segments by usage intensity" width="760">
+</p>
 
 They are also segmented by age group:
 - `Joven`
@@ -186,14 +198,26 @@ Based on the analysis, ConnectaTel could consider the following actions:
 - This analysis helped me connect technical data validation with business decisions in **customer segmentation, retention, and upselling**.
 
 ## Repository Structure
-A recommended repository structure for this project is:
+
+The main analysis and supporting visualizations are organized as follows:
 
 ```text
 connectatel-telecom-analysis/
-│
-├── README.md
+├── datasets/
+│   ├── plans.csv
+│   ├── users_latam.csv
+│   └── usage.csv
+├── images/
+│   ├── 1_connectatel-usage-segments.png
+│   ├── 2_connectatel-age-distribution-by-plan.png
+│   └── 3_connectatel-call-minutes-outliers.png
 ├── connectatel-telecom-analysis.ipynb
-└── datasets/
-    ├── plans.csv
-    ├── users_latam.csv
-    └── usage.csv
+└── README.md
+```
+
+### File Guide
+
+- `connectatel-telecom-analysis.ipynb`: Main notebook covering data exploration, cleaning, usage analysis, segmentation, and interpretation.
+- `README.md`: Project overview, analytical workflow, key findings, and business recommendations.
+- `datasets/`: Source datasets used in the analysis: plans.csv, users_latam.csv, and usage.csv.
+- `images/`: Selected visualizations displayed in this README.
